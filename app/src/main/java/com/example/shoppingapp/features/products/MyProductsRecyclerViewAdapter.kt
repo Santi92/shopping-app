@@ -6,11 +6,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 
 import com.example.shoppingapp.databinding.FragmentItemProductBinding
+import com.example.shoppingapp.features.products.model.ProductItem
 
-import com.example.shoppingapp.features.products.placeholder.PlaceholderContent.PlaceholderItem
 
 class MyProductsRecyclerViewAdapter(
-    private val values: List<PlaceholderItem>
+    private val values: List<ProductItem>
 ) : RecyclerView.Adapter<MyProductsRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,9 +25,10 @@ class MyProductsRecyclerViewAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = values[position]
-        holder.idView.text = item.id
-        holder.contentView.text = item.content
+        values[position].run {
+            holder.idView.text = title
+            holder.contentView.text = description
+        }
     }
 
     override fun getItemCount(): Int = values.size
