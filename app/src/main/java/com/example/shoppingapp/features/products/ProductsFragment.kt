@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.shoppingapp.R
 import com.example.shoppingapp.data.local.ContentProvider
 
@@ -24,8 +25,11 @@ class ProductsFragment : Fragment() {
         // Set the adapter
         if (view is RecyclerView) {
             with(view) {
-                layoutManager = LinearLayoutManager(context)
-                adapter = MyProductsRecyclerViewAdapter(ContentProvider.ITEMS)
+                layoutManager = GridLayoutManager(context, 2)
+                adapter = MyProductsRecyclerViewAdapter(
+                    ContentProvider.ITEMS,
+                    this@ProductsFragment,
+                )
             }
         }
         return view
