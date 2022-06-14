@@ -1,8 +1,7 @@
 package com.example.shoppingapp.features.products
-
-import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
@@ -12,10 +11,10 @@ import com.example.shoppingapp.databinding.FragmentItemProductBinding
 import com.example.shoppingapp.features.products.model.ProductItem
 
 
-class MyProductsRecyclerViewAdapter(
+class ProductsRecyclerViewAdapter(
     private val values: List<ProductItem>,
-    private val context: ProductsFragment,
-) : RecyclerView.Adapter<MyProductsRecyclerViewAdapter.ViewHolder>() {
+    private var onItemClicked: ((product: ProductItem) -> Unit)
+) : RecyclerView.Adapter<ProductsRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -29,16 +28,18 @@ class MyProductsRecyclerViewAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        values[position].run {
+       val product = values[position].apply {
             holder.idView.text = title
-            holder.contentView.text = description
+            holder.description.text = description
 
             Glide
-                .with(context)
+                .with(holder.contentView.context)
                 .load(imageUrl)
-
                 .into(holder.imageView);
         }
+
+        holder.contentView.setOnClickListener { onItemClicked.invoke(product) }
+
     }
 
     override fun getItemCount(): Int = values.size
@@ -46,11 +47,12 @@ class MyProductsRecyclerViewAdapter(
     inner class ViewHolder(binding: FragmentItemProductBinding) :
         RecyclerView.ViewHolder(binding.root) {
         val idView: TextView = binding.itemNumber
-        val contentView: TextView = binding.content
+        val description: TextView = binding.description
         val imageView: ImageView =  binding.itemImage
+        val contentView: View = binding.productContent
 
         override fun toString(): String {
-            return super.toString() + " '" + contentView.text + "'"
+            return super.toString() + " '" + description.text + "'"
         }
     }
 
