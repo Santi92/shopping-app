@@ -17,7 +17,7 @@
             />
     </fragment>
 
-    <fragmen
+    <fragment
         android:id="@+id/productFragment"
         android:name="com.example.shoppingapp.features.product.ProductFragment"
         android:label="fragment_product"
@@ -35,5 +35,5 @@
             android:name="image_url"
             app:argType="string" />
 
-    </fragmen>
+    </fragment>
 </navigation>
