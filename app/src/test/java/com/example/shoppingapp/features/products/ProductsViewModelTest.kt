@@ -15,7 +15,7 @@ import org.junit.Rule
 import org.junit.Test
 
 @ExperimentalCoroutinesApi
-class ProductsViewModelTest{
+class ProductsViewModelTest {
 
     @RelaxedMockK
     private lateinit var contentProvider: ContentProvider
@@ -37,7 +37,7 @@ class ProductsViewModelTest{
     }
 
     @Test
-    fun `when call onCreate should get a product list`() = runTest{
+    fun `when call onCreate should get a product list`() = runTest {
         //Given
         val item = ProductItem("any", "any", "any")
         val list = listOf(item)
@@ -47,11 +47,16 @@ class ProductsViewModelTest{
         productsViewModel.onCreate()
 
         //Then
-        assert(productsViewModel.uiState.value == ProductsUiState(false, list))
+        assert(
+            productsViewModel.uiState.value == ProductsUiState(
+                isLoading = false,
+                productsItems = list,
+            )
+        )
     }
 
     @Test
-    fun `when call onCreate should get a product list empty`() = runTest{
+    fun `when call onCreate should get a product list empty`() = runTest {
         //Given
         val list = emptyList<ProductItem>()
         coEvery { contentProvider.getProducts() } returns list
@@ -60,6 +65,29 @@ class ProductsViewModelTest{
         productsViewModel.onCreate()
 
         //Then
-        assert(productsViewModel.uiState.value == ProductsUiState(false, list))
+        assert(
+            productsViewModel.uiState.value == ProductsUiState(
+                isLoading = false,
+                productsItems = list,
+            )
+        )
+    }
+
+    @Test
+    fun `when call onCreate return a exception should show content error`() = runTest {
+        //Given
+        coEvery { contentProvider.getProducts() } throws NullPointerException("Error occurred")
+
+        //When
+        productsViewModel.onCreate()
+
+        //Then
+        assert(
+            productsViewModel.uiState.value == ProductsUiState(
+                isLoading = false,
+                productsItems = emptyList(),
+                isError = true,
+            )
+        )
     }
 }
