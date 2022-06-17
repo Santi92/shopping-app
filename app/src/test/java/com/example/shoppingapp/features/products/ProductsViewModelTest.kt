@@ -14,7 +14,6 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
-
 @ExperimentalCoroutinesApi
 class ProductsViewModelTest{
 
@@ -37,12 +36,24 @@ class ProductsViewModelTest{
         Dispatchers.resetMain()
     }
 
-
     @Test
     fun `when call onCreate should get a product list`() = runTest{
         //Given
         val item = ProductItem("any", "any", "any")
         val list = listOf(item)
+        coEvery { contentProvider.getProducts() } returns list
+
+        //When
+        productsViewModel.onCreate()
+
+        //Then
+        assert(productsViewModel.uiState.value == ProductsUiState(false, list))
+    }
+
+    @Test
+    fun `when call onCreate should get a product list empty`() = runTest{
+        //Given
+        val list = emptyList<ProductItem>()
         coEvery { contentProvider.getProducts() } returns list
 
         //When

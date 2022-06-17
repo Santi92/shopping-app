@@ -51,7 +51,9 @@ class ProductsFragment : Fragment() {
 
             binding.progressCircular.visibility = if (uiState.isLoading) View.VISIBLE else View.GONE
 
-            if(uiState.productsItems.isNotEmpty()){
+            binding.contentError.visibility  = if (uiState.isError) View.VISIBLE else View.GONE
+
+            if(uiState.productsItems.isNotEmpty() && !uiState.isError ){
                 val adapter = binding.list.adapter
 
                 if(adapter is ProductsRecyclerViewAdapter){
@@ -60,7 +62,13 @@ class ProductsFragment : Fragment() {
                 binding.list.visibility = View.VISIBLE
             }
         })
+        setupListener()
+    }
 
+    private fun setupListener() {
+        binding.contentError.setOnClickListener {
+            productsViewModel.onCreate()
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

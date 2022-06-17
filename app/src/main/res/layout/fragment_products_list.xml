@@ -6,6 +6,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:id="@+id/content_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="gone"
+        >
+
+        <TextView
+            android:layout_gravity="center"
+            android:textStyle="normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:text="Ocurrio un inesperado, intentalo nuevamente"/>
+
+        <ImageView
+            android:layout_marginTop="25dp"
+            android:layout_gravity="center"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:src="@android:drawable/ic_popup_sync"
+            app:tint="@color/teal_200" />
+
+    </LinearLayout>
+
+
     <ProgressBar
         android:id="@+id/progress_circular"
         android:layout_width="match_parent"
@@ -26,7 +58,6 @@
         app:layoutManager="LinearLayoutManager"
         tools:context=".features.products.ProductsFragment"
         tools:listitem="@layout/fragment_item_product"
-
         />
 
 </RelativeLayout>

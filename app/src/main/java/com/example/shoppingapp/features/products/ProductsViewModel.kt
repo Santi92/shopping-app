@@ -17,15 +17,25 @@ class ProductsViewModel(
 
     fun onCreate(){
         viewModelScope.launch {
-            _uiState.postValue(
-                ProductsUiState(true, listOf())
-            )
-
-            val result =  contentProvider.getProducts()
 
             _uiState.postValue(
-                ProductsUiState(false, result)
+                ProductsUiState(isLoading = true, isError = false, productsItems= listOf())
             )
+
+            try {
+                val result =  contentProvider.getProducts()
+                _uiState.postValue(
+                    ProductsUiState(isLoading = false, productsItems = result)
+                )
+            } catch (e: Exception) {
+                println("Caught exception $e")
+
+                _uiState.postValue(
+                    ProductsUiState(isLoading = false, isError = true)
+                )
+            }
+
+
         }
     }
 }
