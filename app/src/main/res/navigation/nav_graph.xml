@@ -9,6 +9,7 @@
         android:id="@+id/productsFragment"
         android:name="com.example.shoppingapp.features.products.ProductsFragment"
         android:label="fragment_products_list"
+        app:popUpToInclusive="true"
         tools:layout="@layout/fragment_products_list" >
         <action
             android:id="@+id/action_detail_product"

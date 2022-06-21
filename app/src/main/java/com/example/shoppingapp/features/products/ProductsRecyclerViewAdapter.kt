@@ -12,7 +12,7 @@ import com.example.shoppingapp.features.products.model.ProductItem
 
 
 class ProductsRecyclerViewAdapter(
-    private val values: List<ProductItem>,
+    private var values: List<ProductItem>,
     private var onItemClicked: ((product: ProductItem) -> Unit)
 ) : RecyclerView.Adapter<ProductsRecyclerViewAdapter.ViewHolder>() {
 
@@ -54,6 +54,11 @@ class ProductsRecyclerViewAdapter(
         override fun toString(): String {
             return super.toString() + " '" + description.text + "'"
         }
+    }
+
+    fun updateProducts(list: List<ProductItem>){
+        this.values = list
+        notifyDataSetChanged()
     }
 
 }
