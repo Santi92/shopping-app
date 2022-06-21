@@ -1,4 +1,19 @@
-package com.example.shoppingapp.domain
+package com.example.shoppingapp.domain.di
 
-class DomainModulo {
+import com.example.shoppingapp.domain.usecase.GetProductList
+import com.example.shoppingapp.domain.usecase.impl.GetProductListImpl
+import dagger.Binds
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+
+
+@Module
+@InstallIn(SingletonComponent::class)
+abstract class DomainModule {
+
+    @Binds
+    abstract fun bindGetProductList(
+        getProductListImpl: GetProductListImpl
+    ): GetProductList
 }

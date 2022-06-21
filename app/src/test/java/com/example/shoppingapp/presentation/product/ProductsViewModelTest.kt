@@ -1,7 +1,7 @@
 package com.example.shoppingapp.presentation.product
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.example.shoppingapp.data.local.ContentProvider
+import com.example.shoppingapp.data.local.ContentFake
 import com.example.shoppingapp.presentation.product.list.ProductsUiState
 import com.example.shoppingapp.presentation.product.list.ProductsViewModel
 import com.example.shoppingapp.domain.model.ProductItem
@@ -20,7 +20,7 @@ import org.junit.Test
 class ProductsViewModelTest {
 
     @RelaxedMockK
-    private lateinit var contentProvider: ContentProvider
+    private lateinit var contentProvider: ContentFake
     private lateinit var productsViewModel: ProductsViewModel
 
     @get:Rule
