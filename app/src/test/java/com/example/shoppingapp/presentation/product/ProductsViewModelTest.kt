@@ -1,8 +1,10 @@
-package com.example.shoppingapp.features.products
+package com.example.shoppingapp.presentation.product
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.shoppingapp.data.local.ContentProvider
-import com.example.shoppingapp.features.products.model.ProductItem
+import com.example.shoppingapp.presentation.product.list.ProductsUiState
+import com.example.shoppingapp.presentation.product.list.ProductsViewModel
+import com.example.shoppingapp.domain.model.ProductItem
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.RelaxedMockK

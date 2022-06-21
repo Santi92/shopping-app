@@ -1,4 +1,4 @@
-package com.example.shoppingapp.features.products
+package com.example.shoppingapp.presentation.product.list
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +8,7 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 
 import com.example.shoppingapp.databinding.FragmentItemProductBinding
-import com.example.shoppingapp.features.products.model.ProductItem
+import com.example.shoppingapp.domain.model.ProductItem
 
 
 class ProductsRecyclerViewAdapter(

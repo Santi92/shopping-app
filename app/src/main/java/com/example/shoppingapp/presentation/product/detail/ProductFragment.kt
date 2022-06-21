@@ -1,4 +1,4 @@
-package com.example.shoppingapp.features.product
+package com.example.shoppingapp.presentation.product.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater

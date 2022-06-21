@@ -56,7 +56,7 @@
         android:visibility="gone"
         tools:visibility="visible"
         app:layoutManager="LinearLayoutManager"
-        tools:context=".features.products.ProductsFragment"
+        tools:context=".presentation.product.list.ProductsFragment"
         tools:listitem="@layout/fragment_item_product"
         />
 

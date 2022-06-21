@@ -1,6 +1,6 @@
 package com.example.shoppingapp.data.local
 
-import com.example.shoppingapp.features.products.model.ProductItem
+import com.example.shoppingapp.domain.model.ProductItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext

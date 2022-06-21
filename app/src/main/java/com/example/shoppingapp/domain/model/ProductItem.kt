@@ -1,4 +1,4 @@
-package com.example.shoppingapp.features.products.model
+package com.example.shoppingapp.domain.model
 
 data class ProductItem(
     val title: String,

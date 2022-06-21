@@ -1,4 +1,4 @@
-package com.example.shoppingapp.features.products
+package com.example.shoppingapp.presentation.product.list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

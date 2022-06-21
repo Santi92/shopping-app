@@ -1,4 +1,4 @@
-package com.example.shoppingapp.features.products
+package com.example.shoppingapp.presentation.product.list
 
 import android.os.Bundle
 import android.util.Log
