@@ -28,20 +28,20 @@ class ProductsViewModel @Inject constructor(
                 ProductsUiState(isLoading = true, isError = false, productsItems = listOf())
             )
 
-            try {
-                val result = getProductList.invoke()
-                _uiState.postValue(
-                    ProductsUiState(isLoading = false, productsItems = result)
-                )
-            } catch (e: Exception) {
-                println("Caught exception $e")
+            val result = getProductList.invoke()
 
-                _uiState.postValue(
-                    ProductsUiState(isLoading = false, isError = true)
-                )
-            }
-
-
+            result.fold(
+                onSuccess = {
+                    _uiState.postValue(
+                        ProductsUiState(isLoading = false, productsItems = it)
+                    )
+                },
+                onFailure = {
+                    _uiState.postValue(
+                        ProductsUiState(isLoading = false, isError = true)
+                    )
+                }
+            )
         }
     }
 }
