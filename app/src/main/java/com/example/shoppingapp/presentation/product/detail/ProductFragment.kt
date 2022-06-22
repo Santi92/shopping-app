@@ -20,7 +20,7 @@ class ProductFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentProductBinding.inflate(inflater, container, false)
-        return binding.root;
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -32,7 +32,7 @@ class ProductFragment : Fragment() {
             Glide
                 .with(this@ProductFragment)
                 .load(imageUrl)
-                .into(binding.productImage);
+                .into(binding.productImage)
         }
     }
 
