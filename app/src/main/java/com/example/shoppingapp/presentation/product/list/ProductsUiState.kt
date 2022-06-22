@@ -1,6 +1,6 @@
-package com.example.shoppingapp.features.products
+package com.example.shoppingapp.presentation.product.list
 
-import com.example.shoppingapp.features.products.model.ProductItem
+import com.example.shoppingapp.domain.model.ProductItem
 
 data class ProductsUiState(
     val isLoading: Boolean = true,

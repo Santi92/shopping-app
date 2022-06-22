@@ -1,16 +1,22 @@
 package com.example.shoppingapp.data.local
 
-import com.example.shoppingapp.features.products.model.ProductItem
+import com.example.shoppingapp.core.di.IoDispatcher
+import com.example.shoppingapp.domain.model.ProductItem
+import com.example.shoppingapp.domain.repository.ProductRepository
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 import java.util.ArrayList
 import java.util.HashMap
+import javax.inject.Inject
 
 /**
  * TODO: Replace to repository.
  */
-class ContentProvider  {
+class ContentFake @Inject constructor(
+    @IoDispatcher private val dispatcher: CoroutineDispatcher
+) : ProductRepository {
 
     /**
      * An array of sample (placeholder) items.
@@ -27,9 +33,9 @@ class ContentProvider  {
     private val IMAGEN_URL = "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
 
 
-    suspend fun getProducts():List<ProductItem>{
+    override suspend fun getProducts(): List<ProductItem> {
 
-        return  withContext(Dispatchers.IO) {
+        return withContext(dispatcher) {
             itemsLocal.clear()
 
             delay(5000L)

@@ -1,8 +1,10 @@
-package com.example.shoppingapp.features.products
+package com.example.shoppingapp.presentation.product
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.example.shoppingapp.data.local.ContentProvider
-import com.example.shoppingapp.features.products.model.ProductItem
+import com.example.shoppingapp.presentation.product.list.ProductsUiState
+import com.example.shoppingapp.presentation.product.list.ProductsViewModel
+import com.example.shoppingapp.domain.model.ProductItem
+import com.example.shoppingapp.domain.usecase.GetProductList
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.RelaxedMockK
@@ -18,7 +20,7 @@ import org.junit.Test
 class ProductsViewModelTest {
 
     @RelaxedMockK
-    private lateinit var contentProvider: ContentProvider
+    private lateinit var getProductList: GetProductList
     private lateinit var productsViewModel: ProductsViewModel
 
     @get:Rule
@@ -27,7 +29,7 @@ class ProductsViewModelTest {
     @Before
     fun onBefore() {
         MockKAnnotations.init(this)
-        productsViewModel = ProductsViewModel(contentProvider)
+        productsViewModel = ProductsViewModel(getProductList, UnconfinedTestDispatcher())
         Dispatchers.setMain(Dispatchers.Unconfined)
     }
 
@@ -41,7 +43,7 @@ class ProductsViewModelTest {
         //Given
         val item = ProductItem("any", "any", "any")
         val list = listOf(item)
-        coEvery { contentProvider.getProducts() } returns list
+        coEvery { getProductList.invoke() } returns list
 
         //When
         productsViewModel.onCreate()
@@ -59,7 +61,7 @@ class ProductsViewModelTest {
     fun `when call onCreate should get a product list empty`() = runTest {
         //Given
         val list = emptyList<ProductItem>()
-        coEvery { contentProvider.getProducts() } returns list
+        coEvery { getProductList.invoke() } returns list
 
         //When
         productsViewModel.onCreate()
@@ -76,7 +78,7 @@ class ProductsViewModelTest {
     @Test
     fun `when call onCreate return a exception should show content error`() = runTest {
         //Given
-        coEvery { contentProvider.getProducts() } throws NullPointerException("Error occurred")
+        coEvery { getProductList.invoke() } throws NullPointerException("Error occurred")
 
         //When
         productsViewModel.onCreate()

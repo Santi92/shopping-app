@@ -1,4 +1,4 @@
-package com.example.shoppingapp.features.products
+package com.example.shoppingapp.presentation.product.list
 
 import android.os.Bundle
 import android.util.Log
@@ -6,19 +6,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.shoppingapp.data.local.ContentProvider
 import com.example.shoppingapp.databinding.FragmentProductsListBinding
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 /**
  * A fragment representing a list of Items.
  */
+@AndroidEntryPoint
 class ProductsFragment : Fragment() {
 
     private lateinit var binding: FragmentProductsListBinding
-    private val productsViewModel: ProductsViewModel by lazy { ProductsViewModel(ContentProvider()) }
+    private val productsViewModel: ProductsViewModel by viewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,6 +62,7 @@ class ProductsFragment : Fragment() {
 
                 if(adapter is ProductsRecyclerViewAdapter){
                     adapter.updateProducts(uiState.productsItems)
+                    adapter.notifyDataSetChanged()
                 }
                 binding.list.visibility = View.VISIBLE
             }

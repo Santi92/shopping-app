@@ -1,4 +1,4 @@
-package com.example.shoppingapp.features.product
+package com.example.shoppingapp.presentation.product.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,17 +10,16 @@ import com.bumptech.glide.Glide
 import com.example.shoppingapp.databinding.FragmentProductBinding
 
 class ProductFragment : Fragment() {
-    private val args: ProductFragmentArgs by navArgs()
 
-    // Initialize variables
+    private val args: ProductFragmentArgs by navArgs()
     private lateinit var binding: FragmentProductBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding=  FragmentProductBinding.inflate(inflater, container, false)
-        return binding.root;
+        binding = FragmentProductBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -32,7 +31,7 @@ class ProductFragment : Fragment() {
             Glide
                 .with(this@ProductFragment)
                 .load(imageUrl)
-                .into(binding.productImage);
+                .into(binding.productImage)
         }
     }
 
