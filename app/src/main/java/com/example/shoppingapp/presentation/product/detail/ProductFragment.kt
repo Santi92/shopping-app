@@ -10,9 +10,8 @@ import com.bumptech.glide.Glide
 import com.example.shoppingapp.databinding.FragmentProductBinding
 
 class ProductFragment : Fragment() {
-    private val args: ProductFragmentArgs by navArgs()
 
-    // Initialize variables
+    private val args: ProductFragmentArgs by navArgs()
     private lateinit var binding: FragmentProductBinding
 
     override fun onCreateView(

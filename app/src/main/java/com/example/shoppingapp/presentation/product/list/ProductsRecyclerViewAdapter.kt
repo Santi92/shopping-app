@@ -58,7 +58,6 @@ class ProductsRecyclerViewAdapter(
 
     fun updateProducts(list: List<ProductItem>){
         this.values = list
-        notifyDataSetChanged()
     }
 
 }

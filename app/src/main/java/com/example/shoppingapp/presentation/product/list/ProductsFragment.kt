@@ -62,6 +62,7 @@ class ProductsFragment : Fragment() {
 
                 if(adapter is ProductsRecyclerViewAdapter){
                     adapter.updateProducts(uiState.productsItems)
+                    adapter.notifyDataSetChanged()
                 }
                 binding.list.visibility = View.VISIBLE
             }

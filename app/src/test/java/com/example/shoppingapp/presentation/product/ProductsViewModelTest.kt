@@ -1,8 +1,6 @@
 package com.example.shoppingapp.presentation.product
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.example.shoppingapp.core.di.DispatcherModule
-import com.example.shoppingapp.data.local.ContentFake
 import com.example.shoppingapp.presentation.product.list.ProductsUiState
 import com.example.shoppingapp.presentation.product.list.ProductsViewModel
 import com.example.shoppingapp.domain.model.ProductItem
