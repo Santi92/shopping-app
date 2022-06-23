@@ -43,7 +43,7 @@ class ProductsViewModelTest {
         //Given
         val item = ProductItem("any", "any", "any")
         val list = listOf(item)
-        coEvery { getProductList.invoke() } returns list
+        coEvery { getProductList.invoke() } returns Result.success(list)
 
         //When
         productsViewModel.onCreate()
@@ -61,7 +61,7 @@ class ProductsViewModelTest {
     fun `when call onCreate should get a product list empty`() = runTest {
         //Given
         val list = emptyList<ProductItem>()
-        coEvery { getProductList.invoke() } returns list
+        coEvery { getProductList.invoke() } returns Result.success(list)
 
         //When
         productsViewModel.onCreate()
@@ -78,7 +78,7 @@ class ProductsViewModelTest {
     @Test
     fun `when call onCreate return a exception should show content error`() = runTest {
         //Given
-        coEvery { getProductList.invoke() } throws NullPointerException("Error occurred")
+        coEvery { getProductList.invoke() } returns  Result.failure(NullPointerException("Error occurred"))
 
         //When
         productsViewModel.onCreate()
