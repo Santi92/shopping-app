@@ -1,13 +1,21 @@
 package com.example.shoppingapp.presentation.product
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
+import com.example.shoppingapp.captureValues
 import com.example.shoppingapp.presentation.product.list.ProductsUiState
 import com.example.shoppingapp.presentation.product.list.ProductsViewModel
 import com.example.shoppingapp.domain.model.ProductItem
 import com.example.shoppingapp.domain.usecase.GetProductList
+import com.example.shoppingapp.getValueForTest
+import com.example.shoppingapp.test
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
+import io.mockk.impl.annotations.MockK
 import io.mockk.impl.annotations.RelaxedMockK
+import io.mockk.verify
+import io.mockk.verifySequence
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.*
@@ -64,14 +72,23 @@ class ProductsViewModelTest {
         coEvery { getProductList.invoke() } returns Result.success(list)
 
         //When
+        val liveDataTest = productsViewModel.uiState.test()
+
         productsViewModel.onCreate()
 
         //Then
         assert(
-            productsViewModel.uiState.value == ProductsUiState(
-                isLoading = false,
-                productsItems = list,
-            )
+            liveDataTest.valueHistory() ==
+                    listOf(
+                        ProductsUiState(
+                            isLoading = true,
+                            productsItems = emptyList(),
+                        ),
+                        ProductsUiState(
+                            isLoading = false,
+                            productsItems = emptyList(),
+                        ),
+                    ),
         )
     }
 
