@@ -30,7 +30,7 @@ class ProductRepositoryImplTest {
     @Before
     fun onBefore() {
         MockKAnnotations.init(this)
-        productRepositoryImpl = ProductRepositoryImpl(productApiService, UnconfinedTestDispatcher())
+        productRepositoryImpl = ProductRepositoryImpl(productApiService, dispatcher)
     }
 
     @Test
@@ -52,8 +52,7 @@ class ProductRepositoryImplTest {
     @Test
     fun `when call getAllQuotes should get a error`() = runTest(dispatcher) {
         //Given
-        val item = ProductDTO("any", "any", 0.0,"any", "any","any")
-        coEvery { productApiService.getAllQuotes(any()) } returns  Result.failure(NullPointerException("Error occurred"))
+       coEvery { productApiService.getAllQuotes(any()) } returns  Result.failure(NullPointerException("Error occurred"))
 
         //When
         val result = productRepositoryImpl.getProducts()
