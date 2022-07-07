@@ -31,14 +31,7 @@ class ProductRepositoryImplTest {
     fun onBefore() {
         MockKAnnotations.init(this)
         productRepositoryImpl = ProductRepositoryImpl(productApiService, UnconfinedTestDispatcher())
-        Dispatchers.setMain(Dispatchers.Unconfined)
     }
-
-    @After
-    fun onAfter() {
-        Dispatchers.resetMain()
-    }
-
 
     @Test
     fun `when call getAllQuotes should get a product list`() = runTest(dispatcher) {
@@ -76,6 +69,5 @@ class ProductRepositoryImplTest {
         assert(result.isFailure)
         assert(resultList == null)
     }
-
 
 }
