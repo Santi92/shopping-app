@@ -42,9 +42,6 @@ class ProductRepositoryImplTest {
 
         //When
         val result = productRepositoryImpl.getProducts()
-
-        advanceUntilIdle() // R
-
         val resultList = result.getOrNull()
 
         //Then
@@ -60,9 +57,6 @@ class ProductRepositoryImplTest {
 
         //When
         val result = productRepositoryImpl.getProducts()
-
-        advanceUntilIdle() // R
-
         val resultList = result.getOrNull()
 
         //Then
