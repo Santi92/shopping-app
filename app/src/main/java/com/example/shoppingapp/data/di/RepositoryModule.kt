@@ -1,6 +1,6 @@
 package com.example.shoppingapp.data.di
 
-import com.example.shoppingapp.data.local.ContentFake
+import com.example.shoppingapp.data.repository.ProductRepositoryImpl
 import com.example.shoppingapp.domain.repository.ProductRepository
 import dagger.Binds
 import dagger.Module
@@ -15,6 +15,6 @@ abstract class RepositoryModule {
     @Singleton
     @Binds
     abstract fun bindProductRepository(
-        productRepositoryImpl: ContentFake
+        productRepositoryImpl: ProductRepositoryImpl
     ): ProductRepository
 }

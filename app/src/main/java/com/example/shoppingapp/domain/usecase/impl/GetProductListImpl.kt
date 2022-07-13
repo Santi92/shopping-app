@@ -9,7 +9,7 @@ class GetProductListImpl @Inject constructor(
    private val productRepository: ProductRepository
 ): GetProductList{
 
-    override suspend operator fun invoke(): List<ProductItem> {
+    override suspend operator fun invoke(): Result<List<ProductItem>> {
         return productRepository.getProducts()
     }
 }
