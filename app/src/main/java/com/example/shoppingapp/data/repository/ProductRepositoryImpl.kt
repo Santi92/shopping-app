@@ -22,7 +22,7 @@ class ProductRepositoryImpl @Inject constructor(
         return withContext(dispatcher) {
 
             if (productsLocalDataSource.isEmpty()) {
-                val result = productApiService.getAllQuotes(15)
+                val result = productApiService.getProducts(15)
 
                 result.map { items ->
                     items.map { it.toModel() }

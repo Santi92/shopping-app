@@ -49,7 +49,7 @@ class ProductsViewModelTest {
     @Test
     fun `when call onCreate should get a product list`() = runTest {
         //Given
-        val item = ProductItem("any", "any", "any")
+        val item = ProductItem("any", "any", "any", "")
         val list = listOf(item)
         coEvery { getProductList.invoke() } returns Result.success(list)
 
