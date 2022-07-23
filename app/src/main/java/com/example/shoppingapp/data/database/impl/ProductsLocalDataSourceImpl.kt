@@ -24,10 +24,10 @@ class ProductsLocalDataSourceImpl @Inject constructor(private val productDao: Pr
         productDao.insertAll(result)
     }
 
-    override suspend fun findById(productId: String): ProductItem {
+    override suspend fun findById(productId: String): ProductItem? {
         val result = productDao.getProductById(productId)
 
-        return result.toModel()
+        return result?.toModel()
     }
 
 }
