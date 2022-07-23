@@ -27,7 +27,7 @@ class GetProductListImplTest{
     @Test
     fun `when call invoke get products should get a product list`() = runTest {
         //Given
-        val item = ProductItem("any", "any", "any")
+        val item = ProductItem("any", "any", "any", "")
         val list = listOf(item)
         coEvery { productRepository.getProducts() } returns Result.success(list)
 
